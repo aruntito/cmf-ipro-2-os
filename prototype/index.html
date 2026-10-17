@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMF iPro 2 OS — System UI Interactive Prototype</title>
+  <meta name="description" content="Apple-inspired frosted UI customisation interactive prototype for CMF Phone 2 Pro (Galaga A001).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-dark">
+
+  <div class="studio-container">
+    <!-- Top Studio Header -->
+    <header class="studio-header">
+      <div class="brand-group">
+        <div class="brand-badge">CMF <span class="badge-sub">iPro 2 OS</span></div>
+        <div class="device-pill">Target: CMF Phone 2 Pro (Galaga A001)</div>
+      </div>
+
+      <div class="studio-toolbar">
+        <!-- Theme Toggle -->
+        <div class="tool-item">
+          <label for="theme-selector" class="tool-label">Theme</label>
+          <div class="segmented-control" id="theme-selector">
+            <button class="segment-btn active" data-theme="dark" id="btn-theme-dark">Dark</button>
+            <button class="segment-btn" data-theme="light" id="btn-theme-light">Light</button>
+          </div>
+        </div>
+
+        <!-- Accent Color Picker -->
+        <div class="tool-item">
+          <label class="tool-label">Accent</label>
+          <div class="accent-picker" id="accent-picker">
+            <button class="accent-circle active" style="--swatch: #FF5200" data-accent="#FF5200" title="CMF Signature Orange"></button>
+            <button class="accent-circle" style="--swatch: #007AFF" data-accent="#007AFF" title="Apple Electric Blue"></button>
+            <button class="accent-circle" style="--swatch: #34C759" data-accent="#34C759" title="Forest Green"></button>
+            <button class="accent-circle" style="--swatch: #AF52DE" data-accent="#AF52DE" title="Dynamic Lilac"></button>
+            <button class="accent-circle" style="--swatch: #E5E5EA" data-accent="#E5E5EA" title="Minimal Monotone"></button>
+          </div>
+        </div>
+
+        <!-- Blur Intensity Slider -->
+        <div class="tool-item">
+          <label for="blur-slider" class="tool-label">Blur Radius: <span id="blur-val">32px</span></label>
+          <input type="range" id="blur-slider" min="12" max="54" value="32" step="2" class="range-slider">
+        </div>
+
+        <!-- Screen Switcher Tabs -->
+        <div class="tool-item">
+          <label class="tool-label">Active Surface</label>
+          <div class="segmented-control" id="screen-selector">
+            <button class="segment-btn active" data-screen="home" id="tab-home">Home</button>
+            <button class="segment-btn" data-screen="lock" id="tab-lock">Lock</button>
+            <button class="segment-btn" data-screen="control" id="tab-control">Control Center</button>
+            <button class="segment-btn" data-screen="space" id="tab-space">Essential Space</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="studio-main">
+      <!-- Device Stage -->
+      <div class="device-stage">
+        <!-- Physical Chassis Mockup (CMF Phone 2 Pro) -->
+        <div class="phone-chassis" id="phone-chassis">
+          <!-- Hardware Essential Key (Left Side) -->
+          <div class="hardware-key key-essential" id="hw-essential-key" title="Physical CMF Essential Key — Click to Toggle Essential Space">
+            <span class="key-label">Essential Key</span>
+          </div>
+
+          <!-- Volume Rockers -->
+          <div class="hardware-key key-vol-up"></div>
+          <div class="hardware-key key-vol-down"></div>
+
+          <!-- Power Button (Right Side) -->
+          <div class="hardware-key key-power"></div>
+
+          <!-- Screen Bezel -->
+          <div class="phone-screen" id="phone-screen">
+            <!-- Wallpaper Canvas -->
+            <div class="wallpaper-layer" id="wallpaper-layer"></div>
+
+            <!-- Dynamic Island / Punch Hole Notch -->
+            <div class="camera-punch-hole">
+              <div class="punch-lens"></div>
+            </div>
+
+            <!-- Unified System Status Bar -->
+            <div class="status-bar" id="status-bar">
+              <div class="status-left">
+                <span class="status-time" id="status-clock">09:41</span>
+              </div>
+              <div class="status-right">
+                <!-- Vector Cellular Signal -->
+                <svg class="status-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="2" y="16" width="3.5" height="5" rx="1"/>
+                  <rect x="7.5" y="12" width="3.5" height="9" rx="1"/>
+                  <rect x="13" y="7" width="3.5" height="14" rx="1"/>
+                  <rect x="18.5" y="3" width="3.5" height="18" rx="1"/>
+                </svg>
+                <!-- Vector Wi-Fi -->
+                <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <path d="M5 9c4-3.5 10-3.5 14 0"/>
+                  <path d="M8.5 13c2.5-2 4.5-2 7 0"/>
+                  <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
+                </svg>
+                <!-- Vector Frosted Battery Pill -->
+                <div class="battery-capsule">
+                  <span class="battery-pct" id="battery-pct">89</span>
+                  <div class="battery-pill-outer">
+                    <div class="battery-pill-fill" style="width: 89%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW 1: LOCK SCREEN -->
+            <div class="screen-view view-lock" id="view-lock">
+              <div class="lock-header">
+                <div class="lock-date-pill frosted-chip">
+                  <span class="date-icon">📅</span>
+                  <span id="lock-date">Saturday, Oct 17</span>
+                </div>
+                <h1 class="lock-clock" id="lock-clock">09:41</h1>
+                <div class="lock-weather-pill frosted-chip">
+                  <span class="weather-icon">⛅</span>
+                  <span>24°C • Mostly Clear</span>
+                </div>
+              </div>
+
+              <!-- Lock Screen Frosted Complications -->
+              <div class="lock-complications">
+                <div class="complication-card frosted-card">
+                  <div class="comp-icon-ring" style="--ring-val: 74%">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                      <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      <path class="circle" stroke-dasharray="74, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                    <span class="comp-val">74%</span>
+                  </div>
+                  <span class="comp-label">Buds Pro</span>
+                </div>
+
+                <div class="complication-card frosted-card">
+                  <div class="comp-glyph">🗓️</div>
+                  <div class="comp-details">
+                    <span class="comp-title">11:00 AM</span>
+                    <span class="comp-sub">Design Review</span>
+                  </div>
+                </div>
+
+                <div class="complication-card frosted-card">
+                  <div class="comp-glyph">⚡</div>
+                  <div class="comp-details">
+                    <span class="comp-title">Essential</span>
+                    <span class="comp-sub">Standby</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Lock Notification Card -->
+              <div class="lock-notifications">
+                <div class="frosted-notification">
+                  <div class="notif-header">
+                    <div class="notif-app-tag">
+                      <div class="notif-icon-disc">💬</div>
+                      <span class="notif-app-name">Messages</span>
+                    </div>
+                    <span class="notif-time">2m ago</span>
+                  </div>
+                  <div class="notif-title">Arun (Engineering)</div>
+                  <div class="notif-body">The Galaga custom overlay framework runs super smooth on the 120Hz display!</div>
+                </div>
+              </div>
+
+              <!-- Lock Bottom Quick Actions -->
+              <div class="lock-bottom-actions">
+                <button class="lock-action-btn frosted-button" id="btn-lock-torch" title="Toggle Flashlight">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6l-3.5 4v10a1.5 1.5 0 0 1-1.5 1.5h-2A1.5 1.5 0 0 1 9.5 20V10L6 6h12z"/>
+                    <circle cx="12" cy="6" r="2"/>
+                  </svg>
+                </button>
+                <div class="lock-swipe-hint">Swipe up to unlock</div>
+                <button class="lock-action-btn frosted-button" id="btn-lock-camera" title="Open Camera">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- VIEW 2: HOME SCREEN -->
+            <div class="screen-view view-home active" id="view-home">
+              <!-- Top Frosted Glance Widget -->
+              <div class="home-widget-row">
+                <div class="frosted-widget split-widget">
+                  <div class="widget-col widget-clock-col">
+                    <span class="w-time" id="widget-clock">09:41</span>
+                    <span class="w-date">Sat, Oct 17</span>
+                    <span class="w-chip">Bengaluru • 24°</span>
+                  </div>
+                  <div class="widget-divider"></div>
+                  <div class="widget-col widget-battery-col">
+                    <div class="device-stat-row">
+                      <span class="stat-name">Galaga A001</span>
+                      <span class="stat-pill">89%</span>
+                    </div>
+                    <div class="device-stat-row">
+                      <span class="stat-name">CMF Watch</span>
+                      <span class="stat-pill">94%</span>
+                    </div>
+                    <div class="device-stat-row">
+                      <span class="stat-name">RAM Free</span>
+                      <span class="stat-pill">5.2 GB</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Squircle Icon Grid -->
+              <div class="home-app-grid">
+                <!-- App 1: Camera -->
+                <div class="app-icon-item" data-app="Camera">
+                  <div class="squircle-icon icon-camera">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                      <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                  </div>
+                  <span class="app-label">Camera</span>
+                </div>
+
+                <!-- App 2: Gallery / Photos -->
+                <div class="app-icon-item" data-app="Photos">
+                  <div class="squircle-icon icon-photos">
+                    <div class="photos-flower">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <span class="app-label">Photos</span>
+                </div>
+
+                <!-- App 3: Settings -->
+                <div class="app-icon-item" data-app="Settings">
+                  <div class="squircle-icon icon-settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  </div>
+                  <span class="app-label">Settings</span>
+                </div>
+
+                <!-- App 4: Weather -->
+                <div class="app-icon-item" data-app="Weather">
+                  <div class="squircle-icon icon-weather">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="5"/>
+                      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                  </div>
+                  <span class="app-label">Weather</span>
+                </div>
+
+                <!-- App 5: Calendar -->
+                <div class="app-icon-item" data-app="Calendar">
+                  <div class="squircle-icon icon-calendar">
+                    <span class="cal-dow">SAT</span>
+                    <span class="cal-day">17</span>
+                  </div>
+                  <span class="app-label">Calendar</span>
+                </div>
+
+                <!-- App 6: Clock -->
+                <div class="app-icon-item" data-app="Clock">
+                  <div class="squircle-icon icon-clock">
+                    <div class="clock-face">
+                      <div class="clock-hand hand-hour"></div>
+                      <div class="clock-hand hand-min"></div>
+                      <div class="clock-hand hand-sec"></div>
+                    </div>
+                  </div>
+                  <span class="app-label">Clock</span>
+                </div>
+
+                <!-- App 7: Notes / Voice -->
+                <div class="app-icon-item" data-app="Notes">
+                  <div class="squircle-icon icon-notes">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <line x1="16" y1="13" x2="8" y2="13"/>
+                      <line x1="16" y1="17" x2="8" y2="17"/>
+                      <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                  </div>
+                  <span class="app-label">Notes</span>
+                </div>
+
+                <!-- App 8: Essential Space Quick -->
+                <div class="app-icon-item" data-app="Essential Space" id="app-launch-essential">
+                  <div class="squircle-icon icon-cmf">
+                    <span class="cmf-dot"></span>
+                    <span class="cmf-brand">CMF</span>
+                  </div>
+                  <span class="app-label">Essential</span>
+                </div>
+              </div>
+
+              <!-- Frosted Ambient Search Bar -->
+              <div class="home-search-container">
+                <div class="frosted-search-pill" id="search-pill">
+                  <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  <span>Search apps, web & widgets</span>
+                </div>
+              </div>
+
+              <!-- Floating Frosted Glass Dock -->
+              <div class="floating-dock-wrapper">
+                <div class="frosted-dock">
+                  <div class="dock-app squircle-icon icon-phone" title="Phone">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </div>
+                  <div class="dock-app squircle-icon icon-messages" title="Messages">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                    </svg>
+                  </div>
+                  <div class="dock-app squircle-icon icon-browser" title="Safari / Chrome">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                    </svg>
+                  </div>
+                  <div class="dock-app squircle-icon icon-music" title="Music">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M9 18V5l12-2v13"/>
+                      <circle cx="6" cy="18" r="3"/>
+                      <circle cx="18" cy="16" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW 3: CONTROL CENTER (QUICK SETTINGS) -->
+            <div class="screen-view view-control" id="view-control">
+              <div class="control-center-scroll">
+                <div class="cc-header">
+                  <span class="cc-title">Control Center</span>
+                  <button class="cc-close-btn frosted-chip" id="btn-close-cc">Done</button>
+                </div>
+
+                <div class="cc-bento-grid">
+                  <!-- Bento 1: 2x2 Connectivity Matrix -->
+                  <div class="cc-card cc-connectivity-card frosted-card">
+                    <div class="connectivity-grid">
+                      <!-- Cellular -->
+                      <button class="cc-toggle-tile active" id="tile-cell" title="Cellular Data">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <rect x="2" y="16" width="3.5" height="5" rx="1"/>
+                          <rect x="7.5" y="12" width="3.5" height="9" rx="1"/>
+                          <rect x="13" y="7" width="3.5" height="14" rx="1"/>
+                          <rect x="18.5" y="3" width="3.5" height="18" rx="1"/>
+                        </svg>
+                        <span>Cellular</span>
+                      </button>
+
+                      <!-- Wi-Fi -->
+                      <button class="cc-toggle-tile active" id="tile-wifi" title="Wi-Fi">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                          <path d="M5 9c4-3.5 10-3.5 14 0"/>
+                          <path d="M8.5 13c2.5-2 4.5-2 7 0"/>
+                          <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span>Wi-Fi</span>
+                      </button>
+
+                      <!-- Bluetooth -->
+                      <button class="cc-toggle-tile active" id="tile-bt" title="Bluetooth">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5"/>
+                        </svg>
+                        <span>Bluetooth</span>
+                      </button>
+
+                      <!-- Airplane -->
+                      <button class="cc-toggle-tile" id="tile-airplane" title="Airplane Mode">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                        </svg>
+                        <span>Airplane</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Bento 2: 2x2 Now Playing Audio Controller -->
+                  <div class="cc-card cc-media-card frosted-card">
+                    <div class="media-preview">
+                      <div class="media-art-placeholder">
+                        <span>🎵</span>
+                      </div>
+                      <div class="media-info">
+                        <div class="media-track">Frosted Ambient</div>
+                        <div class="media-artist">Nothing Sounds Lab</div>
+                        <div class="media-route">Galaga Speakers</div>
+                      </div>
+                    </div>
+                    <div class="media-progress-bar">
+                      <div class="media-progress-fill" style="width: 48%"></div>
+                    </div>
+                    <div class="media-controls">
+                      <button class="media-btn">⏮</button>
+                      <button class="media-btn media-btn-play" id="btn-media-toggle">⏸</button>
+                      <button class="media-btn">⏭</button>
+                    </div>
+                  </div>
+
+                  <!-- Bento 3: Dual Vertical Frosted Sliders -->
+                  <div class="cc-sliders-row">
+                    <!-- Brightness Vertical Slider -->
+                    <div class="vertical-slider-container frosted-card" id="slider-box-brightness">
+                      <div class="slider-fill" id="fill-brightness" style="height: 72%;"></div>
+                      <div class="slider-glyph-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="5"/>
+                          <line x1="12" y1="1" x2="12" y2="3"/>
+                          <line x1="12" y1="21" x2="12" y2="23"/>
+                          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                          <line x1="1" y1="12" x2="3" y2="12"/>
+                          <line x1="21" y1="12" x2="23" y2="12"/>
+                        </svg>
+                        <span class="slider-percent" id="lbl-brightness">72%</span>
+                      </div>
+                    </div>
+
+                    <!-- Volume Vertical Slider -->
+                    <div class="vertical-slider-container frosted-card" id="slider-box-volume">
+                      <div class="slider-fill" id="fill-volume" style="height: 64%;"></div>
+                      <div class="slider-glyph-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                        </svg>
+                        <span class="slider-percent" id="lbl-volume">64%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Bento 4: 1x1 Quick Utility Tiles -->
+                  <div class="cc-tiles-grid">
+                    <button class="cc-action-tile frosted-card" id="tile-torch" title="Flashlight">
+                      <div class="tile-icon">🔦</div>
+                      <span class="tile-name">Torch</span>
+                    </button>
+
+                    <button class="cc-action-tile frosted-card" id="tile-rotation" title="Auto Rotate">
+                      <div class="tile-icon">🔄</div>
+                      <span class="tile-name">Rotate</span>
+                    </button>
+
+                    <button class="cc-action-tile frosted-card" id="tile-focus" title="Focus Mode">
+                      <div class="tile-icon">🌙</div>
+                      <span class="tile-name">Focus</span>
+                    </button>
+
+                    <button class="cc-action-tile frosted-card" id="tile-essential" title="CMF Essential Space">
+                      <div class="tile-icon" style="color: var(--theme-accent);">⚡</div>
+                      <span class="tile-name">Essential</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW 4: CMF ESSENTIAL SPACE DRAWER -->
+            <div class="screen-view view-space" id="view-space">
+              <div class="space-drawer-card frosted-card">
+                <div class="space-handle-bar"></div>
+                
+                <div class="space-header">
+                  <div class="space-title-group">
+                    <span class="space-dot"></span>
+                    <h2 class="space-title">Essential Space</h2>
+                  </div>
+                  <span class="space-hw-tag">Triggered by Physical Key</span>
+                </div>
+
+                <p class="space-desc">
+                  Hardware-mapped CMF quick drawer. Preserves original Galaga A001 input routing without touching kernel keycodes.
+                </p>
+
+                <!-- Essential Space Bento Items -->
+                <div class="space-bento">
+                  <!-- Quick Voice Memo -->
+                  <div class="space-card frosted-card">
+                    <div class="sc-head">
+                      <span class="sc-icon">🎙️</span>
+                      <span class="sc-label">Voice Memo</span>
+                    </div>
+                    <div class="voice-wave-preview">
+                      <span class="bar bar-1"></span>
+                      <span class="bar bar-2"></span>
+                      <span class="bar bar-3"></span>
+                      <span class="bar bar-4"></span>
+                      <span class="bar bar-5"></span>
+                      <span class="bar bar-6"></span>
+                    </div>
+                    <button class="sc-btn frosted-button" id="btn-record-memo">Tap to Record</button>
+                  </div>
+
+                  <!-- Quick Hardware State -->
+                  <div class="space-card frosted-card">
+                    <div class="sc-head">
+                      <span class="sc-icon">⚙️</span>
+                      <span class="sc-label">Device Health</span>
+                    </div>
+                    <div class="sc-stat-list">
+                      <div class="sc-stat-item">
+                        <span>Dimensity 7300</span>
+                        <span class="val">38°C</span>
+                      </div>
+                      <div class="sc-stat-item">
+                        <span>Refresh Rate</span>
+                        <span class="val">120 Hz</span>
+                      </div>
+                      <div class="sc-stat-item">
+                        <span>Surface Blur</span>
+                        <span class="val" style="color: var(--status-green);">GPU Active</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Quick Pinned Contacts / Actions -->
+                  <div class="space-card frosted-card full-width">
+                    <div class="sc-head">
+                      <span class="sc-icon">⭐</span>
+                      <span class="sc-label">Speed Actions</span>
+                    </div>
+                    <div class="quick-pills-row">
+                      <button class="frosted-chip">📞 Emergency ICE</button>
+                      <button class="frosted-chip">📷 Instant Snap</button>
+                      <button class="frosted-chip">🔦 Strobe</button>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="space-close-btn frosted-button" id="btn-close-space">Return to System</button>
+              </div>
+            </div>
+
+            <!-- Global Home Swipe Indicator Bar -->
+            <div class="home-indicator-bar" id="home-indicator"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studio Information & Architecture Sidebar -->
+      <aside class="studio-sidebar">
+        <div class="sidebar-section">
+          <h2 class="sidebar-title">CMF iPro 2 OS Architecture</h2>
+          <p class="sidebar-desc">
+            An Apple-inspired frosted UI customisation layer designed for the <strong>CMF Phone 2 Pro (Galaga A001)</strong>. Non-destructive, lightweight, zero-firmware-flash.
+          </p>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="section-heading">Active Specifications</h3>
+          <div class="spec-list">
+            <div class="spec-item">
+              <span class="spec-k">Target Device</span>
+              <span class="spec-v">CMF Phone 2 Pro (A001)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-k">SoC / GPU Blur</span>
+              <span class="spec-v">MediaTek Dimensity 7300</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-k">Deployment Tier</span>
+              <span class="spec-v">RRO / Shizuku / Iconify</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-k">Essential Key</span>
+              <span class="spec-v">Preserved Native Keycode</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-k">Materials</span>
+              <span class="spec-v">Frosted Translucent Blur</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="section-heading">Interactive Guide</h3>
+          <ul class="guide-bullets">
+            <li><strong>Chassis Essential Key:</strong> Click the orange physical key on the left side of the phone frame to invoke Essential Space.</li>
+            <li><strong>Control Center Sliders:</strong> Drag the Brightness and Volume vertical sliders up and down in real-time.</li>
+            <li><strong>Theme & Blur Live Sync:</strong> Adjust the theme toggle and blur radius slider at the top to see instant GPU-accelerated frosted glass rendering.</li>
+            <li><strong>Bottom Home Bar:</strong> Tap the home pill at the bottom to return to Home Screen from any screen.</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="section-heading">Technical Matrix Summary</h3>
+          <div class="tier-badges">
+            <div class="tier-badge">
+              <span class="tb-title">Tier 1: Stock ROM</span>
+              <span class="tb-body">Monet Engine, Light/Dark, Display Scale</span>
+            </div>
+            <div class="tier-badge">
+              <span class="tb-title">Tier 2: RRO / Fabricated</span>
+              <span class="tb-body">Corner radiuses, Glass alphas, Status metrics</span>
+            </div>
+            <div class="tier-badge">
+              <span class="tb-title">Tier 3: Iconify</span>
+              <span class="tb-body">Split Shade, Vertical Sliders, Custom Status icons</span>
+            </div>
+            <div class="tier-badge">
+              <span class="tb-title">Tier 4: Companion</span>
+              <span class="tb-body">Frosted Essential Space overlay drawer</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

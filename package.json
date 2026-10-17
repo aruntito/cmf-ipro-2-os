@@ -1,0 +1,19 @@
+{
+  "name": "cmf-ipro-2-os",
+  "version": "1.0.0",
+  "description": "Apple-inspired frosted UI customisation project for CMF Phone 2 Pro (Galaga A001)",
+  "scripts": {
+    "dev": "python3 -m http.server 3000 --directory prototype",
+    "serve": "python3 -m http.server 3000 --directory prototype"
+  },
+  "keywords": [
+    "cmf-phone-2-pro",
+    "galaga",
+    "android-theming",
+    "frosted-glass",
+    "ios-style",
+    "rro-overlay"
+  ],
+  "author": "",
+  "license": "MIT"
+}
