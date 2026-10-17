@@ -17,7 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     home: document.getElementById('view-home'),
     lock: document.getElementById('view-lock'),
     control: document.getElementById('view-control'),
-    space: document.getElementById('view-space')
+    space: document.getElementById('view-space'),
+    calc: document.getElementById('view-calc'),
+    settings: document.getElementById('view-settings')
   };
 
   // Hardware buttons & Home bar
@@ -261,4 +263,149 @@ document.addEventListener('DOMContentLoaded', () => {
       btnRecordMemo.style.color = isRecording ? '#FFF' : '';
     });
   }
+
+  // 8. Themed Apps Navigation Handlers
+  const appLaunchSettings = document.getElementById('app-launch-settings');
+  const appLaunchCalc = document.getElementById('app-launch-calc');
+  const btnCalcBack = document.getElementById('btn-calc-back');
+  const btnSettingsBack = document.getElementById('btn-settings-back');
+
+  if (appLaunchSettings) {
+    appLaunchSettings.addEventListener('click', () => switchScreen('settings'));
+  }
+  if (appLaunchCalc) {
+    appLaunchCalc.addEventListener('click', () => switchScreen('calc'));
+  }
+  if (btnCalcBack) {
+    btnCalcBack.addEventListener('click', () => switchScreen('home'));
+  }
+  if (btnSettingsBack) {
+    btnSettingsBack.addEventListener('click', () => switchScreen('home'));
+  }
+
+  // 9. Interactive Calculator State & Computation Engine
+  const calcDisplay = document.getElementById('calc-display');
+  const calcOpPreview = document.getElementById('calc-op-preview');
+  const calcButtons = document.querySelectorAll('.calc-btn');
+
+  let calcCurrentVal = '0';
+  let calcPreviousVal = null;
+  let calcOperator = null;
+  let calcResetNext = false;
+
+  function updateCalcDisplay() {
+    if (!calcDisplay) return;
+    calcDisplay.textContent = calcCurrentVal;
+    // Auto-shrink font size if numbers get long
+    if (calcCurrentVal.length > 7) {
+      calcDisplay.style.fontSize = '2.2rem';
+    } else if (calcCurrentVal.length > 5) {
+      calcDisplay.style.fontSize = '2.7rem';
+    } else {
+      calcDisplay.style.fontSize = '3.2rem';
+    }
+
+    if (calcOpPreview) {
+      if (calcOperator && calcPreviousVal !== null) {
+        const opSymbol = calcOperator === '*' ? '×' : (calcOperator === '/' ? '÷' : calcOperator);
+        calcOpPreview.textContent = `${calcPreviousVal} ${opSymbol}`;
+      } else {
+        calcOpPreview.textContent = '';
+      }
+    }
+  }
+
+  calcButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.val;
+      const action = btn.dataset.action;
+
+      if (val !== undefined && action !== 'op') {
+        // Number or decimal point input
+        if (calcResetNext) {
+          calcCurrentVal = val === '.' ? '0.' : val;
+          calcResetNext = false;
+        } else {
+          if (val === '.') {
+            if (!calcCurrentVal.includes('.')) {
+              calcCurrentVal += '.';
+            }
+          } else {
+            calcCurrentVal = calcCurrentVal === '0' ? val : calcCurrentVal + val;
+          }
+        }
+        updateCalcDisplay();
+        return;
+      }
+
+      if (action === 'clear') {
+        calcCurrentVal = '0';
+        calcPreviousVal = null;
+        calcOperator = null;
+        calcResetNext = false;
+        updateCalcDisplay();
+        return;
+      }
+
+      if (action === 'negate') {
+        if (calcCurrentVal !== '0') {
+          calcCurrentVal = calcCurrentVal.startsWith('-') ? calcCurrentVal.slice(1) : '-' + calcCurrentVal;
+          updateCalcDisplay();
+        }
+        return;
+      }
+
+      if (action === 'percent') {
+        const num = parseFloat(calcCurrentVal) / 100;
+        calcCurrentVal = String(num);
+        updateCalcDisplay();
+        return;
+      }
+
+      if (action === 'op') {
+        const op = btn.dataset.val;
+        if (calcOperator && !calcResetNext && calcPreviousVal !== null) {
+          // Perform intermediate computation
+          calculateResult();
+        }
+        calcPreviousVal = calcCurrentVal;
+        calcOperator = op;
+        calcResetNext = true;
+        updateCalcDisplay();
+        return;
+      }
+
+      if (action === 'equals') {
+        if (calcOperator && calcPreviousVal !== null) {
+          calculateResult();
+          calcOperator = null;
+          calcPreviousVal = null;
+          calcResetNext = true;
+          updateCalcDisplay();
+        }
+        return;
+      }
+    });
+  });
+
+  function calculateResult() {
+    const prev = parseFloat(calcPreviousVal);
+    const curr = parseFloat(calcCurrentVal);
+    let res = 0;
+
+    switch (calcOperator) {
+      case '+': res = prev + curr; break;
+      case '-': res = prev - curr; break;
+      case '*': res = prev * curr; break;
+      case '/': res = curr !== 0 ? prev / curr : 'Error'; break;
+      default: return;
+    }
+
+    if (typeof res === 'number') {
+      // Clean up floating point inaccuracies
+      res = Math.round(res * 10000000) / 10000000;
+    }
+    calcCurrentVal = String(res);
+  }
 });
+

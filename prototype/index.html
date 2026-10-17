@@ -56,6 +56,8 @@
             <button class="segment-btn" data-screen="lock" id="tab-lock">Lock</button>
             <button class="segment-btn" data-screen="control" id="tab-control">Control Center</button>
             <button class="segment-btn" data-screen="space" id="tab-space">Essential Space</button>
+            <button class="segment-btn" data-screen="calc" id="tab-calc">Calculator</button>
+            <button class="segment-btn" data-screen="settings" id="tab-settings">Settings</button>
           </div>
         </div>
       </div>
@@ -247,7 +249,7 @@
                 </div>
 
                 <!-- App 3: Settings -->
-                <div class="app-icon-item" data-app="Settings">
+                <div class="app-icon-item" data-app="Settings" id="app-launch-settings">
                   <div class="squircle-icon icon-settings">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="3"/>
@@ -289,18 +291,12 @@
                   <span class="app-label">Clock</span>
                 </div>
 
-                <!-- App 7: Notes / Voice -->
-                <div class="app-icon-item" data-app="Notes">
-                  <div class="squircle-icon icon-notes">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                      <polyline points="14 2 14 8 20 8"/>
-                      <line x1="16" y1="13" x2="8" y2="13"/>
-                      <line x1="16" y1="17" x2="8" y2="17"/>
-                      <polyline points="10 9 9 9 8 9"/>
-                    </svg>
+                <!-- App 7: Calculator -->
+                <div class="app-icon-item" data-app="Calculator" id="app-launch-calc">
+                  <div class="squircle-icon icon-calc">
+                    <span class="calc-glyph">±=</span>
                   </div>
-                  <span class="app-label">Notes</span>
+                  <span class="app-label">Calculator</span>
                 </div>
 
                 <!-- App 8: Essential Space Quick -->
@@ -558,6 +554,142 @@
                 </div>
 
                 <button class="space-close-btn frosted-button" id="btn-close-space">Return to System</button>
+              </div>
+            </div>
+
+            <!-- VIEW 5: THEMED CALCULATOR APP -->
+            <div class="screen-view view-calc" id="view-calc">
+              <div class="app-nav-bar">
+                <button class="app-back-btn frosted-chip" id="btn-calc-back">← Home</button>
+                <span class="app-nav-title">Calculator</span>
+                <span class="app-nav-badge">Themed</span>
+              </div>
+
+              <!-- Calculator Display -->
+              <div class="calc-display-container">
+                <div class="calc-operation-preview" id="calc-op-preview"></div>
+                <div class="calc-main-display" id="calc-display">0</div>
+              </div>
+
+              <!-- Calculator Keypad (Apple-inspired Frosted Round Buttons) -->
+              <div class="calc-keypad-grid">
+                <!-- Row 1 -->
+                <button class="calc-btn btn-fn frosted-button" data-action="clear">AC</button>
+                <button class="calc-btn btn-fn frosted-button" data-action="negate">±</button>
+                <button class="calc-btn btn-fn frosted-button" data-action="percent">%</button>
+                <button class="calc-btn btn-op frosted-button" data-action="op" data-val="/">÷</button>
+
+                <!-- Row 2 -->
+                <button class="calc-btn btn-num frosted-button" data-val="7">7</button>
+                <button class="calc-btn btn-num frosted-button" data-val="8">8</button>
+                <button class="calc-btn btn-num frosted-button" data-val="9">9</button>
+                <button class="calc-btn btn-op frosted-button" data-action="op" data-val="*">×</button>
+
+                <!-- Row 3 -->
+                <button class="calc-btn btn-num frosted-button" data-val="4">4</button>
+                <button class="calc-btn btn-num frosted-button" data-val="5">5</button>
+                <button class="calc-btn btn-num frosted-button" data-val="6">6</button>
+                <button class="calc-btn btn-op frosted-button" data-action="op" data-val="-">−</button>
+
+                <!-- Row 4 -->
+                <button class="calc-btn btn-num frosted-button" data-val="1">1</button>
+                <button class="calc-btn btn-num frosted-button" data-val="2">2</button>
+                <button class="calc-btn btn-num frosted-button" data-val="3">3</button>
+                <button class="calc-btn btn-op frosted-button" data-action="op" data-val="+">+</button>
+
+                <!-- Row 5 -->
+                <button class="calc-btn btn-num btn-zero frosted-button" data-val="0">0</button>
+                <button class="calc-btn btn-num frosted-button" data-val=".">.</button>
+                <button class="calc-btn btn-equals frosted-button" data-action="equals">=</button>
+              </div>
+            </div>
+
+            <!-- VIEW 6: THEMED SETTINGS APP (GROUPED BENTO CARDS) -->
+            <div class="screen-view view-settings" id="view-settings">
+              <div class="app-nav-bar">
+                <button class="app-back-btn frosted-chip" id="btn-settings-back">← Home</button>
+                <span class="app-nav-title">Settings</span>
+                <span class="app-nav-badge">Themed</span>
+              </div>
+
+              <div class="settings-scroll-container">
+                <!-- Device Profile Hero Card -->
+                <div class="settings-hero-card frosted-card">
+                  <div class="hero-device-icon">
+                    <span class="hero-dot"></span>
+                    <span class="hero-tag">A001</span>
+                  </div>
+                  <div class="hero-device-meta">
+                    <h3 class="hero-model">CMF Phone 2 Pro</h3>
+                    <div class="hero-theme-pill">CMF iPro 2 OS • Frosted Glass</div>
+                    <div class="hero-soc-pill">Dimensity 7300 • 120Hz Active</div>
+                  </div>
+                </div>
+
+                <!-- Bento Group 1: Essential Hardware & Theme -->
+                <div class="settings-bento-group frosted-card">
+                  <div class="settings-row">
+                    <div class="row-left">
+                      <div class="row-glyph-box" style="--glyph-color: var(--theme-accent);">⚡</div>
+                      <span class="row-title">Essential Key Mapping</span>
+                    </div>
+                    <span class="row-value">Essential Space</span>
+                  </div>
+
+                  <div class="row-separator"></div>
+
+                  <div class="settings-row">
+                    <div class="row-left">
+                      <div class="row-glyph-box" style="--glyph-color: #007AFF;">🫧</div>
+                      <span class="row-title">Frosted Blur Engine</span>
+                    </div>
+                    <span class="row-value" style="color: var(--status-green);">SurfaceFlinger Active</span>
+                  </div>
+
+                  <div class="row-separator"></div>
+
+                  <div class="settings-row">
+                    <div class="row-left">
+                      <div class="row-glyph-box" style="--glyph-color: #AF52DE;">📐</div>
+                      <span class="row-title">Icon Superellipses</span>
+                    </div>
+                    <span class="row-value">Apple Squircles</span>
+                  </div>
+                </div>
+
+                <!-- Bento Group 2: Wireless & Connections -->
+                <div class="settings-bento-group frosted-card">
+                  <div class="settings-row">
+                    <div class="row-left">
+                      <div class="row-glyph-box" style="--glyph-color: #FF9500;">✈️</div>
+                      <span class="row-title">Airplane Mode</span>
+                    </div>
+                    <div class="ios-switch">
+                      <input type="checkbox" id="switch-airplane">
+                      <span class="slider round"></span>
+                    </div>
+                  </div>
+
+                  <div class="row-separator"></div>
+
+                  <div class="settings-row">
+                    <div class="row-left">
+                      <div class="row-glyph-box" style="--glyph-color: #007AFF;">📶</div>
+                      <span class="row-title">Wi-Fi</span>
+                    </div>
+                    <span class="row-value">Galaga_5GHz</span>
+                  </div>
+
+                  <div class="row-separator"></div>
+
+                  <div class="settings-row">
+                    <div class="row-left">
+                      <div class="row-glyph-box" style="--glyph-color: #34C759;">🎧</div>
+                      <span class="row-title">Bluetooth</span>
+                    </div>
+                    <span class="row-value">CMF Buds Pro Connected</span>
+                  </div>
+                </div>
               </div>
             </div>
 
