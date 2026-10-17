@@ -1,46 +1,64 @@
-# CMF iPro 2 OS: Implementation Architecture Matrix (Audited for Android 16)
+# CMF iPro 2 OS — Real Theme Implementation Matrix (Audited Phase 3)
 
-**Target Device:** CMF Phone 2 Pro (Model A001, Codename *Galaga*)  
-**Operating System:** Android 16 (Nothing OS)  
-**Hardware & Security Status:** Locked Bootloader, Non-Rooted, Stock ROM  
-
----
-
-## 1. Technical Boundary Assessment for Android 16
-
-### Limitations of Unprivileged RRO & Fabricated Overlays (`cmd overlay`)
-1. **No Layout Modification:** Fabricated runtime overlays cannot replace `res/layout/*.xml` structures. They cannot reorganize horizontal sliders into vertical capsules or create split pull-down shades.
-2. **Overlayable Restrictions:** In Android 14+, target packages must declare an `<overlayable>` specification. Stock Nothing OS SystemUI restricts private resources from unprivileged overlay manipulation.
-
-### Limitations of Iconify
-1. **Platform Incompatibility:** Iconify is built for AOSP 12–14 and selected 15 builds. It is not verified on Android 16 and conflicts with Nothing OS's proprietary SystemUI extensions.
-2. **Root Requirement:** Iconify requires Magisk/KernelSU and LSPosed. Running it on stock Nothing OS without a custom ROM can trigger immediate SystemUI crash loops.
+**Target Device:** CMF Phone 2 Pro (Model `A001`, Codename `Galaga`)  
+**SoC:** MediaTek Dimensity 7300  
+**Core Directive:** Existing Compatible ROM + Root + Theming. No ROM compiling or AOSP tree checkout.
 
 ---
 
-## 2. Realistic Feature Feasibility Matrix
+## 1. ROM Candidate Evaluation for Galaga
 
-| System Component | Target Visual / Behavior | Stock Nothing OS 16 Feasibility | Privileged / Custom ROM Feasibility | Recommended Implementation Path |
+| ROM Candidate | Availability & Stability Status | Essential Key HAL Support | Theming & Iconify Compatibility | Verdict |
 |---|---|---|---|---|
-| **App Icons** | Apple squircle curvature with minimal vector glyphs | ✅ 100% Feasible | ✅ 100% Feasible | Standard Android Icon Pack APK applied via Nothing OS Launcher settings. |
-| **Essential Key** | Hardware key launches Essential Space | ✅ 100% Feasible | ✅ 100% Feasible | Native Nothing OS Settings > Special Features > Essential Key mapped to app/shortcut. |
-| **Essential Space** | Frosted slide-in drawer with quick widgets | ✅ 100% Feasible | ✅ 100% Feasible | Standalone non-root companion app using `SYSTEM_ALERT_WINDOW` or standard intent. |
-| **Material Colors** | Frosted light whites, obsidian dark themes | ✅ 100% Feasible | ✅ 100% Feasible | Android Monet color engine paired with curated frosted wallpapers. |
-| **Lock Screen Clock** | Custom typography, bold centered layout | ⚠️ Limited to built-in Nothing OS styles | ✅ Full layout customization | Use closest built-in Nothing OS clock on stock; full custom clock in Custom ROM. |
-| **Floating Dock** | Translucent frosted dock pill with 4 apps | ❌ Not on stock launcher | ✅ Launcher customization | Use modern 3rd-party launcher (Lawnchair 14) or Custom ROM launcher. |
-| **Split Control Center** | Swipe right for CC, swipe left for Notifs | ❌ Not possible on stock SystemUI | ✅ Custom ROM / Privileged SystemUI | Preserve prototype as blueprint; requires SystemUI fork or custom ROM. |
-| **Dual Vertical Sliders** | Vertical Brightness & Volume in Quick Settings | ❌ Not possible on stock SystemUI | ✅ Custom ROM / Privileged SystemUI | Preserve prototype as blueprint; requires SystemUI fork or custom ROM. |
-| **Status Bar Pill Battery** | Minimal capsule with internal % | ❌ Not possible via RRO | ✅ Custom ROM / Privileged SystemUI | Preserve prototype as blueprint; requires SystemUI fork or custom ROM. |
+| **Rooted Stock Nothing OS (Android 14/15 base)** | ✅ **Available, 100% Stable** (Official OEM) | ✅ **100% Native** (Stock Settings) | ⚠️ **Partial** (Requires selective Iconify / LSPosed; avoid layout-breaking mods) | **Primary Recommended Base** for daily-driver reliability. |
+| **Unofficial LineageOS / crDroid for Galaga** | ⚠️ **Early Community Bringup** (`nothing-galaga` tree) | ⚠️ Requires verifying `gpio-keys.kl` mapping | ✅ **High** (Standard AOSP SystemUI fully compatible with Iconify) | **Secondary Candidate** once vendor camera & sensor HALs stabilize. |
+| **Generic System Image (GSI - Treble)** | ⚠️ **Experimental** (Generic AOSP / Lineage GSI) | ❌ **Broken / Missing** (No OEM key routing) | ⚠️ Medium (MediaTek display & camera glitches common) | **Not Recommended** (Breaks hardware identity). |
 
 ---
 
-## 3. Safe Two-Track Execution Strategy
+## 2. Technical Feasibility & Feature Categorization
 
-### Track 1: Safe Stock Experience (Current Phone State)
-- **Zero Risk:** Phone stays untouched, bootloader locked, no flashing.
-- **Custom Icon Pack:** Build a stand-alone APK providing Apple-inspired squircles for Galaga.
-- **Companion Essential Space:** Build a lightweight Android app providing the frosted widgets and voice memo, mapped to the physical Essential Key.
-- **Frosted Launcher Theme:** Pair with Lawnchair / stock launcher widgets and curated wallpapers.
+Features are categorized strictly according to technical reality:
+- **Category A:** Achievable with existing ROM settings (Zero external tools).
+- **Category B:** Achievable with compatible root modules or RRO resource overlays.
+- **Category C:** Requires modifying or replacing an individual app (RRO cannot alter layout trees).
+- **Category D:** Unsupported or too risky (Likely to cause SystemUI bootloops).
 
-### Track 2: Custom ROM Blueprint (Future SystemUI Fork)
-- The interactive visual prototype in `prototype/` serves as the exact design blueprint and behavioral specification if and when a compatible custom ROM (e.g., LineageOS, Paranoid Android) is developed for Galaga.
+### Detailed Breakdown
+
+| Component / Feature | Target Design | Category | Required Mechanism & Realistic Feasibility |
+|---|---|:---:|---|
+| **Dynamic Palette & Accents** | CMF Signature Orange & Apple Blue | **A** | Android Monet engine + curated frosted wallpapers. |
+| **Lock Screen Shortcuts** | Torch & Camera quick toggles | **A** | Built-in ROM lock screen customization. |
+| **Essential Key Mapping** | Hardware key launches Essential Space | **A** | Built-in Nothing OS / Custom ROM button settings. |
+| **System Surface Blurs** | Real-time Gaussian blur on QS & windows | **A/B** | Hardware-accelerated `SurfaceFlinger` blur natively supported by Dimensity 7300 GPU. |
+| **App Icon Shapes** | Apple superellipse squircles | **B** | Standard vector Icon Pack APK applied via launcher. |
+| **Status Bar Minimal Icons** | iOS-style Wi-Fi wave, cellular bars | **B** | Iconify status bar icon pack overlay or custom RRO icon pack. |
+| **Status Bar Battery Capsule** | Pill with internal % | **B / D** | Supported via Iconify on AOSP; **D (Risky)** on newer Nothing OS builds without testing. |
+| **Split Quick Settings** | Swipe right for CC, swipe left for Notifs | **B** | Supported natively in AOSP custom ROMs; requires selective LSPosed hook on Nothing OS. |
+| **Vertical QS Sliders** | Dual vertical Brightness & Volume | **B / D** | Supported via Iconify QS themes on AOSP; **D (Risky)** on Nothing OS if proprietary QS is active. |
+| **Themed Settings App** | Apple grouped bento cards | **B** | RRO overlay for card corner radiuses, item backgrounds, and icons. |
+| **Themed Calculator App** | Apple round keypad with live math | **C** | **Requires App Implementation:** RRO cannot rewrite Calculator layouts into circular keys. Replaced with lightweight open-source frosted calculator. |
+| **Themed Phone / Dialer** | Circular keypad & blurred call screen | **B / C** | RRO for AOSP Dialer keys; or lightweight frosted dialer replacement. |
+| **Themed Messages App** | Frosted chat bubbles & pill input | **B / C** | RRO for AOSP Messaging. Note: Google Messages resists third-party RRO. |
+| **Themed Weather App** | Dynamic sky canvas & forecast cards | **C** | **Requires App Implementation:** Stock weather is closed-source; replaced with lightweight frosted weather companion. |
+| **Themed Essential Space** | Frosted slide-in drawer with voice memo | **C** | **Requires App Implementation:** Standalone frosted companion APK mapped to Essential Key. |
+
+---
+
+## 3. Minimalist Implementation Checklist
+
+To minimize storage, background overhead, and device risks:
+
+1. **Host Environment (Mac):**
+   - Pure web prototype in `prototype/` (Zero disk overhead, verified visual blueprint).
+   - Lightweight Python asset compiler for vector icons and RRO XMLs (< 5 MB).
+2. **Device Environment (Galaga A001):**
+   - **Base:** Stable Rooted Stock Nothing OS (or verified LineageOS build).
+   - **Root Engine:** KernelSU (clean kernel-level root) or Magisk v27+.
+   - **Xposed Framework (Selective):** ZygiskNext + LSPosed (used ONLY for verified SystemUI blurs, no experimental layout mods).
+   - **Iconify:** Applied strictly for verified icon packs and status bar glyphs.
+   - **Companion Apps (Track 2):**
+     - `CMF-iPro-Icons.apk` (Squircle icons).
+     - `CMF-iPro-Calculator.apk` (Frosted Apple-style calculator).
+     - `CMF-iPro-EssentialSpace.apk` (Mapped to physical hardware key).

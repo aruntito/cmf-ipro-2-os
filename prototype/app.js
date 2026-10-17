@@ -19,7 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     control: document.getElementById('view-control'),
     space: document.getElementById('view-space'),
     calc: document.getElementById('view-calc'),
-    settings: document.getElementById('view-settings')
+    settings: document.getElementById('view-settings'),
+    phone: document.getElementById('view-phone'),
+    messages: document.getElementById('view-messages'),
+    clock: document.getElementById('view-clock'),
+    weather: document.getElementById('view-weather')
   };
 
   // Hardware buttons & Home bar
@@ -59,6 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (statusClock) statusClock.textContent = timeString;
     if (lockClock) lockClock.textContent = timeString;
     if (widgetClock) widgetClock.textContent = timeString;
+
+    const clockDigitalReadout = document.getElementById('clock-digital-readout');
+    if (clockDigitalReadout) clockDigitalReadout.textContent = timeString;
+
+    // Analog Clock Hands Rotation
+    const analogHour = document.getElementById('analog-hour');
+    const analogMin = document.getElementById('analog-min');
+    const analogSec = document.getElementById('analog-sec');
+    if (analogHour && analogMin && analogSec) {
+      const h = now.getHours() % 12;
+      const m = now.getMinutes();
+      const s = now.getSeconds();
+      analogHour.style.transform = `translateX(-50%) rotate(${h * 30 + m * 0.5}deg)`;
+      analogMin.style.transform = `translateX(-50%) rotate(${m * 6}deg)`;
+      analogSec.style.transform = `translateX(-50%) rotate(${s * 6}deg)`;
+    }
 
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -269,6 +289,104 @@ document.addEventListener('DOMContentLoaded', () => {
   const appLaunchCalc = document.getElementById('app-launch-calc');
   const btnCalcBack = document.getElementById('btn-calc-back');
   const btnSettingsBack = document.getElementById('btn-settings-back');
+
+  // Phone App
+  const dockPhone = document.querySelector('.dock-app.icon-phone');
+  const btnPhoneBack = document.getElementById('btn-phone-back');
+  const phoneDisplay = document.getElementById('phone-display');
+  const btnPhoneDelete = document.getElementById('btn-phone-delete');
+  const phoneKeys = document.querySelectorAll('.phone-key');
+  const btnPhoneCall = document.getElementById('btn-phone-call');
+
+  if (dockPhone) {
+    dockPhone.addEventListener('click', () => switchScreen('phone'));
+  }
+  if (btnPhoneBack) {
+    btnPhoneBack.addEventListener('click', () => switchScreen('home'));
+  }
+
+  phoneKeys.forEach(k => {
+    k.addEventListener('click', () => {
+      if (phoneDisplay) {
+        phoneDisplay.textContent += k.dataset.key;
+        if (btnPhoneDelete) btnPhoneDelete.style.display = 'block';
+      }
+    });
+  });
+
+  if (btnPhoneDelete) {
+    btnPhoneDelete.addEventListener('click', () => {
+      if (phoneDisplay) {
+        phoneDisplay.textContent = phoneDisplay.textContent.slice(0, -1);
+        if (phoneDisplay.textContent.length === 0) {
+          btnPhoneDelete.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  if (btnPhoneCall) {
+    btnPhoneCall.addEventListener('click', () => {
+      if (phoneDisplay && phoneDisplay.textContent.length > 0) {
+        alert(`Calling ${phoneDisplay.textContent}... (CMF iPro 2 OS Dialer Simulation)`);
+      }
+    });
+  }
+
+  // Messages App
+  const dockMessages = document.querySelector('.dock-app.icon-messages');
+  const btnMessagesBack = document.getElementById('btn-messages-back');
+  const msgInput = document.getElementById('msg-input');
+  const btnSendMsg = document.getElementById('btn-send-msg');
+  const messagesThread = document.getElementById('messages-thread');
+
+  if (dockMessages) {
+    dockMessages.addEventListener('click', () => switchScreen('messages'));
+  }
+  if (btnMessagesBack) {
+    btnMessagesBack.addEventListener('click', () => switchScreen('home'));
+  }
+
+  function sendMessage() {
+    if (!msgInput || !messagesThread) return;
+    const text = msgInput.value.trim();
+    if (!text) return;
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble bubble-outgoing';
+    bubble.innerHTML = `<p>${text}</p>`;
+    messagesThread.appendChild(bubble);
+    msgInput.value = '';
+    messagesThread.scrollTop = messagesThread.scrollHeight;
+  }
+
+  if (btnSendMsg) {
+    btnSendMsg.addEventListener('click', sendMessage);
+  }
+  if (msgInput) {
+    msgInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  }
+
+  // Clock App
+  const appClock = document.querySelector('.app-icon-item[data-app="Clock"]');
+  const btnClockBack = document.getElementById('btn-clock-back');
+  if (appClock) {
+    appClock.addEventListener('click', () => switchScreen('clock'));
+  }
+  if (btnClockBack) {
+    btnClockBack.addEventListener('click', () => switchScreen('home'));
+  }
+
+  // Weather App
+  const appWeather = document.querySelector('.app-icon-item[data-app="Weather"]');
+  const btnWeatherBack = document.getElementById('btn-weather-back');
+  if (appWeather) {
+    appWeather.addEventListener('click', () => switchScreen('weather'));
+  }
+  if (btnWeatherBack) {
+    btnWeatherBack.addEventListener('click', () => switchScreen('home'));
+  }
 
   if (appLaunchSettings) {
     appLaunchSettings.addEventListener('click', () => switchScreen('settings'));

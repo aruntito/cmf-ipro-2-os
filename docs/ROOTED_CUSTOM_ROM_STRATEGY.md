@@ -1,74 +1,39 @@
-# CMF iPro 2 OS — Rooted Custom ROM Theming Strategy
+# CMF iPro 2 OS — Rooted ROM Candidate & Theming Strategy (Phase 3)
 
-**Target Device:** CMF Phone 2 Pro (Model `A001`, Codename `Galaga` / Dimensity 7300)  
-**Core Directive:** **Existing compatible custom ROM + Root + Theming only.** Zero ROM compiling from source, zero Android tree downloads.
-
----
-
-## 1. System Architecture & Compatibility Stack
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                   CMF iPro 2 OS Theme Layer                 │
-│  - Frosted Glassmorphism Assets (Ultra-Thin to Thick)        │
-│  - App Theming (Phone, Messages, Calculator, Settings, etc.)│
-│  - Essential Space Companion (Mapped to Essential Key)     │
-└─────────────────────────────────────────────────────────────┘
-                               ▲
-                               │
-┌─────────────────────────────────────────────────────────────┐
-│                 SystemUI & Surface Hook Layer               │
-│  - Iconify Engine (v7.x - v8.x)                             │
-│  - LSPosed / ZygiskNext (Quick Settings blur, Split shade)  │
-│  - System OverlayFS / RRO Overlays (/product/overlay)       │
-└─────────────────────────────────────────────────────────────┘
-                               ▲
-                               │
-┌─────────────────────────────────────────────────────────────┐
-│                      Root Environment                       │
-│  - KernelSU (recommended for Dimensity GKI) or Magisk v27+  │
-│  - Zygisk Module Support                                    │
-└─────────────────────────────────────────────────────────────┘
-                               ▲
-                               │
-┌─────────────────────────────────────────────────────────────┐
-│             Compatible Existing Custom ROM                  │
-│  - LineageOS / Evolution X / RisingOS / crDroid             │
-│  - Android 14 / Android 15 AOSP Base                        │
-│  - Hardware keylayout preservation (gpio_keys / Galaga)     │
-└─────────────────────────────────────────────────────────────┘
-```
+**Target Device:** CMF Phone 2 Pro (Model `A001`, Codename `Galaga`)  
+**Architecture:** Existing Compatible ROM + Root + Selective Theming  
 
 ---
 
-## 2. Component Role Division
+## 1. ROM Candidate Analysis for Galaga (Dimensity 7300)
 
-### A. The Role of the Compatible Custom ROM
-1. **Decoupled SystemUI:** AOSP-based custom ROMs (Evolution X, LineageOS, RisingOS) remove OEM proprietary lock-outs on `com.android.systemui`, enabling full RRO overlay support.
-2. **SurfaceFlinger Blur Pipeline:** Custom ROMs enable `ro.surface_flinger.supports_background_blur=1` out of the box, utilizing the Dimensity 7300 Mali-G615 GPU for smooth 120Hz frosted glass backdrop blurs without frame drops.
-3. **Split Shade Support:** Most mature AOSP 14/15 custom ROMs feature native split shade quick settings settings.
+Dedicated AOSP custom ROMs for the CMF Phone 2 Pro are currently in active community bring-up (`nothing-galaga` trees). Because MediaTek vendor drivers for camera and display HALs take time to mature in custom trees:
 
-### B. The Role of Root (KernelSU / Magisk + LSPosed)
-1. **LSPosed Framework:** Required specifically for Iconify's advanced Quick Settings features:
-   - Deep SystemUI background blur injection (Gaussian blur on the shade scrim).
-   - Dynamic vertical brightness and volume slider morphing.
-   - Header clock font replacement.
-2. **OverlayFS Injection:** Allows our compiled theme overlays to sit in `/product/overlay/` or `/vendor/overlay/` without permanently modifying device system partitions (systemless theming).
-
-### C. The Role of Iconify
-- **Status Bar:** iOS-style Wi-Fi wave, cellular signal bars, and battery capsule with inside percentage.
-- **Quick Settings Bento:** Squircle tiles with custom active/inactive glass alphas.
-- **Volume Panel:** Frosted vertical volume dialog matching our design spec.
-
-### D. The Role of Antigravity Theme Engine
-1. **Built-in App Overlays:** Complete frosted glass design overlays for Phone, Messages, Calculator, Settings, Clock, and Weather.
-2. **Custom Vector Icon Pack:** High-fidelity Apple-style squircle icons.
-3. **Essential Space Integration:** Preserving and enhancing the CMF hardware experience.
+1. **Primary Immediate Candidate: Rooted Stock Nothing OS (Android 14/15 base)**
+   - **Advantage:** 100% stable hardware drivers, fully working camera ISP, flawless display refresh rate (120Hz), and zero risk of broken Essential Key keycodes.
+   - **Theming Approach:** Use KernelSU / Magisk with Zygisk + LSPosed to inject selective systemless overlays and status bar packs.
+2. **Future Secondary Candidate: Community LineageOS / crDroid for Galaga**
+   - **Advantage:** Unencumbered AOSP SystemUI where full Iconify split-shade features work without OEM conflicts.
+   - **Prerequisite:** Device tree and vendor blobs must be certified stable by the community before flashing.
 
 ---
 
-## 3. Storage & Resource Footprint Guarantees
+## 2. Realistic Technical Boundaries
 
-- **No Android Source Downloads:** Saves ~250 GB–400 GB of local disk space.
-- **No Heavy Build Toolchains:** Overlays and companion apps compile into tiny APKs (typically < 15 MB total for all themes combined).
-- **Fast Iteration:** Changes to app themes and overlays can be generated, packaged, and tested in seconds.
+### What Overlays (RRO) Can & Cannot Do
+- **Can Do:** Replace colors, vector drawables, corner radii, dimensions, string tokens, and icon packs.
+- **Cannot Do:** RRO cannot add new interactive buttons, rewrite layout XML hierarchies, or change app state machines.
+- **Strategic Fix:** For apps requiring fundamental layout shifts (such as the Apple-style circular Calculator, dynamic Weather canvas, and Essential Space drawer), we provide **lightweight standalone companion APKs** rather than attempting impossible RRO hacks.
+
+---
+
+## 3. Minimal Practical Toolset
+
+| Tool | Purpose | Storage Footprint | Risk Level |
+|---|---|---|---|
+| **Web Prototype (`prototype/`)** | Interactive blueprint & visual testing | ~100 KB | **Zero (Host Only)** |
+| **Python Asset Script** | Compiles XML overlays and squircle icons | ~10 KB | **Zero (Host Only)** |
+| **KernelSU / Magisk** | Systemless root environment on device | ~15 MB | Low (when using stock boot image) |
+| **LSPosed (Selective)** | Framework for Quick Settings blur injection | ~5 MB | Low (applied selectively) |
+| **Iconify (Selective)** | Status bar vector icons and corner styles | ~12 MB | Low (avoiding experimental layout mods) |
+| **Companion APKs** | Frosted Calculator & Essential Space | < 10 MB total | **Zero (Standard User APKs)** |

@@ -693,6 +693,202 @@
               </div>
             </div>
 
+            <!-- VIEW 7: THEMED PHONE / DIALER APP -->
+            <div class="screen-view view-phone" id="view-phone">
+              <div class="app-nav-bar">
+                <button class="app-back-btn frosted-chip" id="btn-phone-back">← Home</button>
+                <span class="app-nav-title">Keypad</span>
+                <span class="app-nav-badge">Themed</span>
+              </div>
+
+              <!-- Number Readout -->
+              <div class="phone-readout-container">
+                <div class="phone-number-display" id="phone-display"></div>
+                <button class="phone-delete-btn" id="btn-phone-delete" title="Backspace" style="display: none;">⌫</button>
+              </div>
+
+              <!-- 3x4 Keypad Grid -->
+              <div class="phone-keypad-grid">
+                <button class="phone-key frosted-button" data-key="1"><span class="k-num">1</span><span class="k-sub"></span></button>
+                <button class="phone-key frosted-button" data-key="2"><span class="k-num">2</span><span class="k-sub">ABC</span></button>
+                <button class="phone-key frosted-button" data-key="3"><span class="k-num">3</span><span class="k-sub">DEF</span></button>
+                <button class="phone-key frosted-button" data-key="4"><span class="k-num">4</span><span class="k-sub">GHI</span></button>
+                <button class="phone-key frosted-button" data-key="5"><span class="k-num">5</span><span class="k-sub">JKL</span></button>
+                <button class="phone-key frosted-button" data-key="6"><span class="k-num">6</span><span class="k-sub">MNO</span></button>
+                <button class="phone-key frosted-button" data-key="7"><span class="k-num">7</span><span class="k-sub">PQRS</span></button>
+                <button class="phone-key frosted-button" data-key="8"><span class="k-num">8</span><span class="k-sub">TUV</span></button>
+                <button class="phone-key frosted-button" data-key="9"><span class="k-num">9</span><span class="k-sub">WXYZ</span></button>
+                <button class="phone-key frosted-button" data-key="*"><span class="k-num">*</span><span class="k-sub"></span></button>
+                <button class="phone-key frosted-button" data-key="0"><span class="k-num">0</span><span class="k-sub">+</span></button>
+                <button class="phone-key frosted-button" data-key="#"><span class="k-num">#</span><span class="k-sub"></span></button>
+              </div>
+
+              <!-- Call Trigger Pill -->
+              <div class="phone-call-row">
+                <button class="phone-call-pill" id="btn-phone-call" title="Call">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- VIEW 8: THEMED MESSAGES APP -->
+            <div class="screen-view view-messages" id="view-messages">
+              <div class="app-nav-bar">
+                <button class="app-back-btn frosted-chip" id="btn-messages-back">← Home</button>
+                <div class="chat-header-title">
+                  <span class="chat-contact-name">Arun Tito</span>
+                  <span class="chat-status-indicator">Online</span>
+                </div>
+                <div class="chat-avatar-chip">AT</div>
+              </div>
+
+              <!-- Thread Area -->
+              <div class="messages-thread-scroll" id="messages-thread">
+                <div class="message-timestamp">Today 10:14 AM</div>
+                <div class="chat-bubble bubble-incoming frosted-card">
+                  <p>Hey! How is the frosted customisation running on the CMF Phone 2 Pro?</p>
+                </div>
+                <div class="chat-bubble bubble-outgoing">
+                  <p>Super clean! The 120Hz display with GPU blur feels completely Apple-inspired.</p>
+                </div>
+                <div class="chat-bubble bubble-incoming frosted-card">
+                  <p>Awesome. Keep third-party apps untouched and hardware Essential Key mapped.</p>
+                </div>
+              </div>
+
+              <!-- Floating Input Pill -->
+              <div class="messages-input-row">
+                <div class="frosted-input-capsule">
+                  <input type="text" id="msg-input" placeholder="iMessage / SMS..." autocomplete="off">
+                  <button class="msg-send-btn" id="btn-send-msg">↑</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW 9: THEMED CLOCK & STOPWATCH APP -->
+            <div class="screen-view view-clock" id="view-clock">
+              <div class="app-nav-bar">
+                <button class="app-back-btn frosted-chip" id="btn-clock-back">← Home</button>
+                <span class="app-nav-title">Clock</span>
+                <span class="app-nav-badge">Themed</span>
+              </div>
+
+              <!-- Analog Dial Header -->
+              <div class="clock-hero-face">
+                <div class="analog-dial frosted-card">
+                  <div class="dial-center-pin"></div>
+                  <div class="analog-hand analog-hour" id="analog-hour"></div>
+                  <div class="analog-hand analog-min" id="analog-min"></div>
+                  <div class="analog-hand analog-sec" id="analog-sec"></div>
+                </div>
+                <div class="clock-digital-hero" id="clock-digital-readout">09:41</div>
+              </div>
+
+              <!-- World Clocks List -->
+              <div class="world-clock-list">
+                <div class="world-clock-card frosted-card">
+                  <div>
+                    <span class="wc-diff">Today, +0 HRS</span>
+                    <h4 class="wc-city">Bengaluru</h4>
+                  </div>
+                  <span class="wc-time" id="wc-blr">09:41</span>
+                </div>
+
+                <div class="world-clock-card frosted-card">
+                  <div>
+                    <span class="wc-diff">Today, -4.5 HRS</span>
+                    <h4 class="wc-city">London</h4>
+                  </div>
+                  <span class="wc-time" id="wc-lon">05:11</span>
+                </div>
+
+                <div class="world-clock-card frosted-card">
+                  <div>
+                    <span class="wc-diff">Yesterday, -12.5 HRS</span>
+                    <h4 class="wc-city">Cupertino</h4>
+                  </div>
+                  <span class="wc-time" id="wc-cup">21:11</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW 10: THEMED WEATHER APP -->
+            <div class="screen-view view-weather" id="view-weather">
+              <div class="app-nav-bar">
+                <button class="app-back-btn frosted-chip" id="btn-weather-back">← Home</button>
+                <span class="app-nav-title">Weather</span>
+                <span class="app-nav-badge">Themed</span>
+              </div>
+
+              <div class="weather-scroll-container">
+                <!-- Hero Section -->
+                <div class="weather-hero">
+                  <h3 class="weather-city">Bengaluru</h3>
+                  <div class="weather-temp">24°</div>
+                  <div class="weather-cond">Mostly Clear</div>
+                  <div class="weather-hilo">H: 29° • L: 19°</div>
+                </div>
+
+                <!-- Hourly Forecast Cards Strip -->
+                <div class="hourly-forecast-strip">
+                  <div class="hourly-pill frosted-card">
+                    <span>Now</span>
+                    <span class="h-icon">☀️</span>
+                    <span class="h-temp">24°</span>
+                  </div>
+                  <div class="hourly-pill frosted-card">
+                    <span>11 AM</span>
+                    <span class="h-icon">⛅</span>
+                    <span class="h-temp">25°</span>
+                  </div>
+                  <div class="hourly-pill frosted-card">
+                    <span>12 PM</span>
+                    <span class="h-icon">⛅</span>
+                    <span class="h-temp">27°</span>
+                  </div>
+                  <div class="hourly-pill frosted-card">
+                    <span>1 PM</span>
+                    <span class="h-icon">☀️</span>
+                    <span class="h-temp">28°</span>
+                  </div>
+                  <div class="hourly-pill frosted-card">
+                    <span>2 PM</span>
+                    <span class="h-icon">☀️</span>
+                    <span class="h-temp">28°</span>
+                  </div>
+                </div>
+
+                <!-- 2x2 Bento Weather Metrics -->
+                <div class="weather-bento-grid">
+                  <div class="weather-metric-card frosted-card">
+                    <span class="m-label">UV INDEX</span>
+                    <span class="m-val">5 Moderate</span>
+                    <span class="m-sub">Use sun protection</span>
+                  </div>
+
+                  <div class="weather-metric-card frosted-card">
+                    <span class="m-label">WIND</span>
+                    <span class="m-val">14 km/h</span>
+                    <span class="m-sub">WSW gusting to 22</span>
+                  </div>
+
+                  <div class="weather-metric-card frosted-card">
+                    <span class="m-label">AIR QUALITY</span>
+                    <span class="m-val" style="color: var(--status-green);">42 Good</span>
+                    <span class="m-sub">Ideal for outdoor activity</span>
+                  </div>
+
+                  <div class="weather-metric-card frosted-card">
+                    <span class="m-label">HUMIDITY</span>
+                    <span class="m-val">62%</span>
+                    <span class="m-sub">The dew point is 16°</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Global Home Swipe Indicator Bar -->
             <div class="home-indicator-bar" id="home-indicator"></div>
           </div>
