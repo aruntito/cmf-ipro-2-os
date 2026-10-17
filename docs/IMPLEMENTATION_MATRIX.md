@@ -10,8 +10,8 @@
 
 | ROM Candidate | Availability & Stability Status | Essential Key HAL Support | Theming & Iconify Compatibility | Verdict |
 |---|---|---|---|---|
-| **Rooted Stock Nothing OS (Android 14/15 base)** | ✅ **Available, 100% Stable** (Official OEM) | ✅ **100% Native** (Stock Settings) | ⚠️ **Partial** (Requires selective Iconify / LSPosed; avoid layout-breaking mods) | **Primary Recommended Base** for daily-driver reliability. |
-| **Unofficial LineageOS / crDroid for Galaga** | ⚠️ **Early Community Bringup** (`nothing-galaga` tree) | ⚠️ Requires verifying `gpio-keys.kl` mapping | ✅ **High** (Standard AOSP SystemUI fully compatible with Iconify) | **Secondary Candidate** once vendor camera & sensor HALs stabilize. |
+| **Community Custom ROM (LineageOS / crDroid for Galaga)** | ⚠️ **Active Bringup** (`nothing-galaga` tree) | ⚠️ To be verified upon release (`gpio-keys.kl`) | ✅ **High** (Standard AOSP SystemUI fully compatible with standard theming) | **Target Base:** Wait for verified, stable community release with working camera & sensors. |
+| **Rooted Nothing OS (OEM Custom Baseline)** | ✅ **Available, 100% Stable** (Official OEM) | ✅ **100% Native** (Stock Settings) | ⚠️ **Selective** (Avoid proprietary SystemUI conflicts) | **Interim Fallback:** Kept untouched while custom ROM build stabilizes. |
 | **Generic System Image (GSI - Treble)** | ⚠️ **Experimental** (Generic AOSP / Lineage GSI) | ❌ **Broken / Missing** (No OEM key routing) | ⚠️ Medium (MediaTek display & camera glitches common) | **Not Recommended** (Breaks hardware identity). |
 
 ---
