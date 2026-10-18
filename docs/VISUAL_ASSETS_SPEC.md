@@ -53,22 +53,28 @@ This palette defines the exact semantic color tokens for both Light and Dark mod
 
 ---
 
-## 3. Squircle Icon Pack Specification
+## 3. Application Icon Specification & Provenance
 
-All icon assets are stored as clean, resolution-independent vector SVGs in [`assets/icons/`](file:///Users/arun/WORK/CMF%20iPro%202%20OS/assets/icons/):
+> [!WARNING]
+> **Production Icon Policy — Source, Don't Redesign:**  
+> In accordance with user directives, **invented or redesigned application icons are strictly removed from the proposed production theme pack**.
+> Production icons must be sourced directly from the original applications, official Nothing/CMF packages, or upstream ROM repositories (LineageOS 24.0 / AOSP). Where an official asset cannot be verified or legally obtained, it is marked **NOT SOURCED** rather than substituted.
+>
+> Full provenance and license details are documented in [`docs/ICON_SOURCING_AUDIT.md`](file:///Users/arun/WORK/CMF%20iPro%202%20OS/docs/ICON_SOURCING_AUDIT.md).
 
-- **Grid Dimensions:** 192 × 192 px viewport (Android standard adaptive icon canvas).
-- **Curvature:** Apple-style continuous curvature superellipse ($k=4$ Lamé curve approximation, `rx="44" ry="44"`).
-- **Rim Highlight:** 2px semi-transparent specular gradient border (`rgba(255,255,255,0.45)` to `0.05`).
-- **Icons Included:**
-  1. `phone.svg`: Emerald gradient base (`#34C759` to `#248A3D`) with minimal receiver glyph.
-  2. `messages.svg`: Vibrant green base (`#30D158`) with crisp speech bubble glyph.
-  3. `calculator.svg`: CMF Orange base (`#FF5200`) with tactile 4-symbol arithmetic layout.
-  4. `settings.svg`: Slate obsidian base (`#5A5F6B` to `#2D3037`) with precision concentric gear glyph.
-  5. `clock.svg`: Obsidian base (`#1A1C20`) with clean dial ring, white hour/minute hands, and CMF orange second hand.
-  6. `weather.svg`: Azure sky base (`#2DA0F6` to `#0066CC`) with amber sun and frosted cloud.
-  7. `essential.svg`: CMF Signature Orange base with central tactile core and CMF monogram typography.
-  8. `camera.svg`: Deep graphite base with multi-ring glass lens reflection.
+### Status of Prototype Assets (`assets/icons/*.svg`)
+The eight vector files in [`assets/icons/`](file:///Users/arun/WORK/CMF%20iPro%202%20OS/assets/icons/) are **Non-Production Concept Placeholders** used exclusively for layout and contrast testing within the browser prototype:
+
+| Icon File | Current Prototype Role | Real Target Package | Upstream Verification Status |
+|---|---|---|---|
+| `phone.svg` | Concept Placeholder | `com.android.dialer` / `com.google.android.dialer` | **[Verified Upstream (LineageOS)]** / Stock Google: *NOT SOURCED* |
+| `messages.svg` | Concept Placeholder | `com.android.messaging` / `com.google.android.apps.messaging` | **[Verified Upstream (LineageOS)]** / Stock Google: *NOT SOURCED* |
+| `calculator.svg` | Concept Placeholder | `com.android.calculator2` / `com.google.android.calculator` | **[Verified Upstream (LineageOS)]** / Stock Google: *NOT SOURCED* |
+| `settings.svg` | Concept Placeholder | `com.android.settings` | **[Verified Upstream (LineageOS)]** / Nothing OS: *NOT SOURCED* |
+| `clock.svg` | Concept Placeholder | `com.android.deskclock` / `com.google.android.deskclock` | **[Verified Upstream (LineageOS)]** / Stock Google: *NOT SOURCED* |
+| `weather.svg` | Concept Placeholder | `com.nothing.weather` | **NOT SOURCED** (Proprietary Nothing Technology Ltd) |
+| `essential.svg` | Concept Placeholder | CMF Hardware Essential Subsystem | **NOT SOURCED** (Hardware-bound; no standalone icon) |
+| `camera.svg` | Concept Placeholder | `org.lineageos.aperture` / `com.nothing.camera` | **[Verified Upstream (LineageOS Aperture)]** / Nothing Camera: *NOT SOURCED* |
 
 ---
 
