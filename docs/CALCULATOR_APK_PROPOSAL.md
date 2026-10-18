@@ -34,6 +34,10 @@ Android’s modern WebAPK system automatically packages a conforming Progressive
 3. The user opens the local IP (e.g. `http://192.168.x.x:3000/calculator.html`) on their CMF Phone 2 Pro and taps **"Add to Home screen"**.
 4. Android creates a standalone launcher shortcut with no browser chrome, full gesture support, and immediate 120Hz rendering.
 
+> [!NOTE]
+> **Technical Clarification on WebAPK Minting:**  
+> A Progressive Web App is **not guaranteed to produce a background-minted WebAPK** on every Android configuration. WebAPK generation requires Google Play Services integration, Chrome browser defaults, and active network minting services. On browsers without WebAPK minting (or custom ROMs without Play Services), Android installs it as a browser-managed standalone web app shortcut. We therefore classify this implementation as an **Installable Web App**.
+
 ---
 
 ## 4. Detailed Walkthrough of Option B (Headless CLI APK — ~550 MB)

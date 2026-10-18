@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>CMF iPro Calculator</title>
+
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="description" content="Apple-inspired frosted glass Calculator for CMF Phone 2 Pro (Galaga A001)">
+  <meta name="theme-color" content="#0A0B0D">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Calculator">
+
+  <!-- Manifest & Icons -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="calc.css">
+</head>
+<body class="theme-dark">
+  <div class="app-container">
+    <!-- Offline Status Pill -->
+    <div class="offline-status-pill" id="offline-status">Offline Ready</div>
+
+    <!-- Header Navigation & Customisation -->
+    <header class="calc-header">
+      <div class="brand-badge">
+        <span class="cmf-dot"></span>
+        <span>CMF iPro</span>
+      </div>
+      <div class="header-actions">
+        <button class="frosted-chip-btn" id="btn-toggle-theme" title="Switch Theme">
+          ☀️ Light
+        </button>
+      </div>
+    </header>
+
+    <!-- Formula & Main Digit Display -->
+    <main class="calc-display-section">
+      <div class="calc-formula-preview" id="calc-formula-preview"></div>
+      <div class="calc-value-readout" id="calc-display-val">0</div>
+    </main>
+
+    <!-- Frosted Keypad Grid -->
+    <div class="calc-keypad" id="calc-keypad">
+      <!-- Row 1: Functions & Divide -->
+      <button class="calc-key key-fn" data-action="clear" aria-label="Clear All">AC</button>
+      <button class="calc-key key-fn" data-action="negate" aria-label="Toggle Sign">±</button>
+      <button class="calc-key key-fn" data-action="percent" aria-label="Percent">%</button>
+      <button class="calc-key key-op" data-op="/" aria-label="Divide">÷</button>
+
+      <!-- Row 2: 7-9 & Multiply -->
+      <button class="calc-key key-num" data-num="7">7</button>
+      <button class="calc-key key-num" data-num="8">8</button>
+      <button class="calc-key key-num" data-num="9">9</button>
+      <button class="calc-key key-op" data-op="*" aria-label="Multiply">×</button>
+
+      <!-- Row 3: 4-6 & Subtract -->
+      <button class="calc-key key-num" data-num="4">4</button>
+      <button class="calc-key key-num" data-num="5">5</button>
+      <button class="calc-key key-num" data-num="6">6</button>
+      <button class="calc-key key-op" data-op="-" aria-label="Subtract">−</button>
+
+      <!-- Row 4: 1-3 & Add -->
+      <button class="calc-key key-num" data-num="1">1</button>
+      <button class="calc-key key-num" data-num="2">2</button>
+      <button class="calc-key key-num" data-num="3">3</button>
+      <button class="calc-key key-op" data-op="+" aria-label="Add">+</button>
+
+      <!-- Row 5: 0, Decimal & Equals -->
+      <button class="calc-key key-num key-zero" data-num="0">0</button>
+      <button class="calc-key key-num" data-num=".">.</button>
+      <button class="calc-key key-equals" data-action="equals" aria-label="Equals">=</button>
+    </div>
+  </div>
+
+  <script src="calc.js"></script>
+</body>
+</html>
