@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2412" width="1080" height="2412">
+  <defs>
+    <!-- Background Porcelain Canvas Gradient -->
+    <linearGradient id="bgLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFCFD"/>
+      <stop offset="50%" stop-color="#F2F4F7"/>
+      <stop offset="100%" stop-color="#E5E8EF"/>
+    </linearGradient>
+
+    <!-- Warm CMF Amber-Orange Soft Ambient -->
+    <radialGradient id="cmfLightGlow" cx="35%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FF5200" stop-opacity="0.18"/>
+      <stop offset="50%" stop-color="#FF7A33" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#FF5200" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Crisp Ethereal Sky Bloom -->
+    <radialGradient id="appleLightBlueGlow" cx="80%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="#007AFF" stop-opacity="0.16"/>
+      <stop offset="50%" stop-color="#5AC8FA" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#007AFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Frosted Glass Filter -->
+    <filter id="lightFrostedBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="95" result="blur"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1.1 0"/>
+    </filter>
+
+    <!-- Crisp Specular Edge Highlight for Light Surfaces -->
+    <linearGradient id="lightRimHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#D0D5DD" stop-opacity="0.60"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="1080" height="2412" fill="url(#bgLightGrad)"/>
+
+  <!-- Ethereal Diffused Background Atmosphere -->
+  <g filter="url(#lightFrostedBlur)">
+    <!-- CMF Ambient Warmth -->
+    <ellipse cx="400" cy="550" rx="460" ry="380" fill="url(#cmfLightGlow)"/>
+    
+    <!-- Cool Glass Reflection -->
+    <ellipse cx="800" cy="1850" rx="500" ry="440" fill="url(#appleLightBlueGlow)"/>
+
+    <!-- Dynamic Frosted Ribbon Overlay -->
+    <path d="M-50,750 C350,550 750,950 1150,750 L1150,1800 C750,2000 350,1750 -50,1950 Z" 
+          fill="#FFFFFF" fill-opacity="0.55"/>
+  </g>
+
+  <!-- Foreground Structural Layout Guides & Specular Edge -->
+  <g>
+    <!-- Upper Clock/Glance Frame -->
+    <rect x="70" y="240" width="940" height="420" rx="44" ry="44" 
+          fill="#FFFFFF" fill-opacity="0.45" stroke="url(#lightRimHighlight)" stroke-width="1.8"/>
+
+    <!-- App Grid Surface -->
+    <rect x="70" y="740" width="940" height="1140" rx="48" ry="48" 
+          fill="#FFFFFF" fill-opacity="0.30" stroke="url(#lightRimHighlight)" stroke-width="1.5"/>
+
+    <!-- Floating Dock Rest Bed -->
+    <rect x="90" y="2060" width="900" height="210" rx="52" ry="52" 
+          fill="#FFFFFF" fill-opacity="0.65" stroke="url(#lightRimHighlight)" stroke-width="2.0"/>
+  </g>
+</svg>

@@ -58,6 +58,7 @@
             <button class="segment-btn" data-screen="space" id="tab-space">Essential Space</button>
             <button class="segment-btn" data-screen="calc" id="tab-calc">Calculator</button>
             <button class="segment-btn" data-screen="settings" id="tab-settings">Settings</button>
+            <button class="segment-btn" data-screen="assets" id="tab-assets">Assets Showcase</button>
           </div>
         </div>
       </div>
@@ -884,6 +885,129 @@
                     <span class="m-label">HUMIDITY</span>
                     <span class="m-val">62%</span>
                     <span class="m-sub">The dew point is 16°</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW 11: ASSETS SHOWCASE (WALLPAPERS & ICONS) -->
+            <div class="screen-view view-assets" id="view-assets">
+              <div class="app-nav-bar">
+                <button class="app-back-btn frosted-chip" id="btn-assets-back">← Home</button>
+                <span class="app-nav-title">Visual Assets</span>
+                <span class="app-nav-badge">Phase 6A</span>
+              </div>
+
+              <div class="assets-scroll-container">
+                <!-- Section 1: Frosted Wallpapers -->
+                <div class="assets-section-card frosted-card">
+                  <div class="sc-head">
+                    <span class="sc-icon">🖼️</span>
+                    <span class="sc-label">Frosted Wallpapers (1080×2412)</span>
+                  </div>
+                  <p class="assets-hint">Tap any wallpaper to apply it to the phone canvas:</p>
+                  
+                  <div class="wallpaper-thumb-grid">
+                    <div class="wp-thumb-card active" data-wp="dark" id="wp-pick-dark">
+                      <div class="wp-preview-box wp-box-dark"></div>
+                      <span class="wp-name">Frosted Dark</span>
+                    </div>
+
+                    <div class="wp-thumb-card" data-wp="light" id="wp-pick-light">
+                      <div class="wp-preview-box wp-box-light"></div>
+                      <span class="wp-name">Frosted Light</span>
+                    </div>
+
+                    <div class="wp-thumb-card" data-wp="min-dark" id="wp-pick-min-dark">
+                      <div class="wp-preview-box wp-box-min-dark"></div>
+                      <span class="wp-name">Minimal Dark</span>
+                    </div>
+
+                    <div class="wp-thumb-card" data-wp="min-light" id="wp-pick-min-light">
+                      <div class="wp-preview-box wp-box-min-light"></div>
+                      <span class="wp-name">Minimal Light</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 2: Squircle Icon Pack -->
+                <div class="assets-section-card frosted-card">
+                  <div class="sc-head">
+                    <span class="sc-icon">✨</span>
+                    <span class="sc-label">Vector Squircle Icons (192×192)</span>
+                  </div>
+                  <p class="assets-hint">Original Apple-proportioned continuous squircles with CMF identity:</p>
+
+                  <div class="icon-family-grid">
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/phone.svg" alt="Phone" class="icon-img-preview">
+                      <span class="icon-asset-name">Phone</span>
+                    </div>
+
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/messages.svg" alt="Messages" class="icon-img-preview">
+                      <span class="icon-asset-name">Messages</span>
+                    </div>
+
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/calculator.svg" alt="Calculator" class="icon-img-preview">
+                      <span class="icon-asset-name">Calculator</span>
+                    </div>
+
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/settings.svg" alt="Settings" class="icon-img-preview">
+                      <span class="icon-asset-name">Settings</span>
+                    </div>
+
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/clock.svg" alt="Clock" class="icon-img-preview">
+                      <span class="icon-asset-name">Clock</span>
+                    </div>
+
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/weather.svg" alt="Weather" class="icon-img-preview">
+                      <span class="icon-asset-name">Weather</span>
+                    </div>
+
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/essential.svg" alt="Essential" class="icon-img-preview">
+                      <span class="icon-asset-name">Essential</span>
+                    </div>
+
+                    <div class="icon-asset-item">
+                      <img src="../assets/icons/camera.svg" alt="Camera" class="icon-img-preview">
+                      <span class="icon-asset-name">Camera</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 3: Color Tokens Reference -->
+                <div class="assets-section-card frosted-card">
+                  <div class="sc-head">
+                    <span class="sc-icon">🎨</span>
+                    <span class="sc-label">Core Color Tokens</span>
+                  </div>
+                  <div class="palette-swatch-list">
+                    <div class="swatch-row">
+                      <span class="swatch-color" style="background: #FF5200;"></span>
+                      <span class="swatch-token">--accent-cmf</span>
+                      <span class="swatch-hex">#FF5200 (Signature Orange)</span>
+                    </div>
+                    <div class="swatch-row">
+                      <span class="swatch-color" style="background: #007AFF;"></span>
+                      <span class="swatch-token">--accent-blue</span>
+                      <span class="swatch-hex">#007AFF (Electric Blue)</span>
+                    </div>
+                    <div class="swatch-row">
+                      <span class="swatch-color" style="background: #34C759;"></span>
+                      <span class="swatch-token">--status-green</span>
+                      <span class="swatch-hex">#34C759 (Emerald)</span>
+                    </div>
+                    <div class="swatch-row">
+                      <span class="swatch-color" style="background: #0A0B0D; border: 1px solid rgba(255,255,255,0.2);"></span>
+                      <span class="swatch-token">--bg-dark</span>
+                      <span class="swatch-hex">#0A0B0D (Obsidian Canvas)</span>
+                    </div>
                   </div>
                 </div>
               </div>

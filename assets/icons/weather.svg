@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="weatherBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2DA0F6"/>
+      <stop offset="100%" stop-color="#0066CC"/>
+    </linearGradient>
+    <linearGradient id="iconSpecular" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <!-- Squircle Base -->
+  <rect x="8" y="8" width="176" height="176" rx="44" ry="44" fill="url(#weatherBg)"/>
+  <!-- Frosted Specular Rim -->
+  <rect x="9" y="9" width="174" height="174" rx="43" ry="43" fill="none" stroke="url(#iconSpecular)" stroke-width="2"/>
+
+  <!-- Sun -->
+  <circle cx="118" cy="74" r="24" fill="#FFB300"/>
+  <!-- Frosted Cloud -->
+  <path d="M124 136H66c-16.6 0-30-13.4-30-30 0-14.7 10.6-26.9 24.8-29.4C63.2 62.3 76.8 52 93 52c17.5 0 32.1 12 36.2 28.3 8.7 1.5 14.8 9.1 14.8 17.7 0 10-8.1 38-20 38z" 
+        fill="#FFFFFF" fill-opacity="0.95"/>
+</svg>

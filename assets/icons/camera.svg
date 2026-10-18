@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="cameraBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4B515D"/>
+      <stop offset="100%" stop-color="#1C1F26"/>
+    </linearGradient>
+    <linearGradient id="iconSpecular" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="176" height="176" rx="44" ry="44" fill="url(#cameraBg)"/>
+  <rect x="9" y="9" width="174" height="174" rx="43" ry="43" fill="none" stroke="url(#iconSpecular)" stroke-width="2"/>
+
+  <!-- Camera Body -->
+  <path d="M148 64h-22l-8-14H74l-8 14H44c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12h104c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12z" 
+        fill="#FFFFFF"/>
+  <circle cx="96" cy="108" r="28" fill="#1C1F26"/>
+  <circle cx="96" cy="108" r="22" fill="#3D434F"/>
+  <circle cx="96" cy="108" r="14" fill="#0A0B0E"/>
+  <circle cx="102" cy="102" r="4" fill="#5AC8FA" fill-opacity="0.8"/>
+</svg>

@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     phone: document.getElementById('view-phone'),
     messages: document.getElementById('view-messages'),
     clock: document.getElementById('view-clock'),
-    weather: document.getElementById('view-weather')
+    weather: document.getElementById('view-weather'),
+    assets: document.getElementById('view-assets')
   };
 
   // Hardware buttons & Home bar
@@ -400,6 +401,35 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnSettingsBack) {
     btnSettingsBack.addEventListener('click', () => switchScreen('home'));
   }
+
+  // Assets Showcase Navigation & Wallpaper Switcher
+  const btnAssetsBack = document.getElementById('btn-assets-back');
+  const wallpaperLayer = document.getElementById('wallpaper-layer');
+  const wpCards = document.querySelectorAll('.wp-thumb-card');
+
+  if (btnAssetsBack) {
+    btnAssetsBack.addEventListener('click', () => switchScreen('home'));
+  }
+
+  const wallpaperMap = {
+    'dark': '../assets/wallpapers/frosted_dark_1080x2412.svg',
+    'light': '../assets/wallpapers/frosted_light_1080x2412.svg',
+    'min-dark': '../assets/wallpapers/frosted_minimal_dark_1080x2412.svg',
+    'min-light': '../assets/wallpapers/frosted_minimal_light_1080x2412.svg'
+  };
+
+  wpCards.forEach(card => {
+    card.addEventListener('click', () => {
+      wpCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const wpKey = card.dataset.wp;
+      if (wallpaperLayer && wallpaperMap[wpKey]) {
+        wallpaperLayer.style.backgroundImage = `url("${wallpaperMap[wpKey]}")`;
+        wallpaperLayer.style.backgroundSize = 'cover';
+        wallpaperLayer.style.backgroundPosition = 'center';
+      }
+    });
+  });
 
   // 9. Interactive Calculator State & Computation Engine
   const calcDisplay = document.getElementById('calc-display');

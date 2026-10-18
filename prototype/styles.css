@@ -2256,3 +2256,160 @@ body {
   color: var(--text-sub);
   line-height: 1.2;
 }
+
+/* ==========================================================================
+   VIEW 11: ASSETS SHOWCASE (WALLPAPERS & ICONS)
+   ========================================================================== */
+.view-assets {
+  padding-bottom: 24px;
+}
+
+.assets-scroll-container {
+  overflow-y: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.assets-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.assets-section-card {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.assets-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+/* Wallpaper Thumbnails */
+.wallpaper-thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.wp-thumb-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 14px;
+  background: var(--glass-ultra-thin);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.15s ease, border-color 0.2s ease;
+}
+
+.wp-thumb-card:hover {
+  transform: translateY(-2px);
+}
+
+.wp-thumb-card.active {
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 0 1.5px var(--theme-accent);
+}
+
+.wp-preview-box {
+  width: 100%;
+  height: 90px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+.wp-box-dark {
+  background-image: url('../assets/wallpapers/frosted_dark_1080x2412.svg');
+}
+
+.wp-box-light {
+  background-image: url('../assets/wallpapers/frosted_light_1080x2412.svg');
+}
+
+.wp-box-min-dark {
+  background-image: url('../assets/wallpapers/frosted_minimal_dark_1080x2412.svg');
+}
+
+.wp-box-min-light {
+  background-image: url('../assets/wallpapers/frosted_minimal_light_1080x2412.svg');
+}
+
+.wp-name {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Icon Family Grid */
+.icon-family-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 8px;
+}
+
+.icon-asset-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-img-preview {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+}
+
+.icon-img-preview:hover {
+  transform: scale(1.1);
+}
+
+.icon-asset-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Palette Swatch List */
+.palette-swatch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.swatch-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  padding: 4px 0;
+}
+
+.swatch-color {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.swatch-token {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  min-width: 110px;
+}
+
+.swatch-hex {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+}

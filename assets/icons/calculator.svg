@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="calcBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5200"/>
+      <stop offset="100%" stop-color="#D94100"/>
+    </linearGradient>
+    <linearGradient id="iconSpecular" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <!-- Squircle Base -->
+  <rect x="8" y="8" width="176" height="176" rx="44" ry="44" fill="url(#calcBg)"/>
+  <!-- Frosted Specular Rim -->
+  <rect x="9" y="9" width="174" height="174" rx="43" ry="43" fill="none" stroke="url(#iconSpecular)" stroke-width="2"/>
+  
+  <!-- Tactile Arithmetic Key Grid Layout -->
+  <g fill="#FFFFFF">
+    <!-- Plus Minus -->
+    <path d="M56 64h16v-8h8v8h16v8H80v8h-8v-8H56z M56 90h40v6H56z"/>
+    <!-- Multiply -->
+    <path d="M125 61l10-10 6 6-10 10 10 10-6 6-10-10-10 10-6-6 10-10-10-10 6-6z"/>
+    <!-- Divide -->
+    <circle cx="76" cy="120" r="4.5"/>
+    <rect x="56" y="132" width="40" height="6" rx="3"/>
+    <circle cx="76" cy="150" r="4.5"/>
+    <!-- Equals -->
+    <rect x="115" y="125" width="34" height="6" rx="3"/>
+    <rect x="115" y="141" width="34" height="6" rx="3"/>
+  </g>
+</svg>

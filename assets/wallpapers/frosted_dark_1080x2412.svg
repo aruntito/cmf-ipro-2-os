@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2412" width="1080" height="2412">
+  <defs>
+    <!-- Background Canvas Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07080A"/>
+      <stop offset="45%" stop-color="#0F1115"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </linearGradient>
+
+    <!-- Ambient Glow Gradients -->
+    <radialGradient id="cmfOrangeGlow" cx="40%" cy="22%" r="55%">
+      <stop offset="0%" stop-color="#FF5200" stop-opacity="0.32"/>
+      <stop offset="50%" stop-color="#FF5200" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#FF5200" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="appleBlueGlow" cx="75%" cy="75%" r="60%">
+      <stop offset="0%" stop-color="#007AFF" stop-opacity="0.26"/>
+      <stop offset="55%" stop-color="#0051B3" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#007AFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="ambientVioletRefraction" cx="15%" cy="60%" r="45%">
+      <stop offset="0%" stop-color="#5E5CE6" stop-opacity="0.18"/>
+      <stop offset="70%" stop-color="#5E5CE6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Frosted Glass Filter -->
+    <filter id="deepFrostedBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="90" result="blur"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1.2 0"/>
+    </filter>
+
+    <!-- Subtle Glass Edge Highlight -->
+    <linearGradient id="rimHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Obsidian Canvas -->
+  <rect width="1080" height="2412" fill="url(#bgGrad)"/>
+
+  <!-- Ethereal Diffused Atmospheric Layers (Filtered) -->
+  <g filter="url(#deepFrostedBlur)">
+    <!-- CMF Orange Harmonic Orb -->
+    <ellipse cx="440" cy="520" rx="480" ry="360" fill="url(#cmfOrangeGlow)"/>
+    
+    <!-- Electric Blue Sub-Surface Bloom -->
+    <ellipse cx="780" cy="1800" rx="520" ry="460" fill="url(#appleBlueGlow)"/>
+    
+    <!-- Tactile Secondary Refraction -->
+    <circle cx="220" cy="1400" r="380" fill="url(#ambientVioletRefraction)"/>
+
+    <!-- Geometric Frosted Wave (Soft Depth Curve) -->
+    <path d="M-100,600 C300,450 700,850 1180,650 L1180,1700 C800,1900 400,1650 -100,1850 Z" 
+          fill="#1A1D24" fill-opacity="0.35"/>
+  </g>
+
+  <!-- Foreground Frosted Tactile Geometry (Continuous Squircles & Specular Edge) -->
+  <g>
+    <!-- Upper Complication Halo -->
+    <rect x="70" y="240" width="940" height="420" rx="44" ry="44" 
+          fill="#FFFFFF" fill-opacity="0.02" stroke="url(#rimHighlight)" stroke-width="1.5"/>
+
+    <!-- Center App Grid Ambient Guide (Subtle Frosted Pill) -->
+    <rect x="70" y="740" width="940" height="1140" rx="48" ry="48" 
+          fill="#FFFFFF" fill-opacity="0.015" stroke="url(#rimHighlight)" stroke-width="1.2"/>
+
+    <!-- Bottom Dock Ambient Glow Bed -->
+    <rect x="90" y="2060" width="900" height="210" rx="52" ry="52" 
+          fill="#FFFFFF" fill-opacity="0.03" stroke="url(#rimHighlight)" stroke-width="1.5"/>
+  </g>
+</svg>
